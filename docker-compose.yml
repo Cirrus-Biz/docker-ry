@@ -14,35 +14,21 @@ x-common-variables: &common-variables
   ENCRYPT_SECRET_KEY: ${ENCRYPT_SECRET_KEY}
   JWT_SECRET_KEY: ${JWT_SECRET_KEY}
 
-x-aws-loadbalancer: "arn:aws:elasticloadbalancing:us-east-1:541351699142:loadbalancer/net/alineLoadBalancer/7aa577f2fa563b65"
-
 services:
   gateway:
     image: noodleween/aline-gateway-ry:corretto
-    build: aline-gateway-RY
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: "0.25"
-    #       memory: 1GB
     ports:
       - ${GATEWAY_M}
     environment:
       APP_PORT: ${GATEWAY_M}
       # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-      APP_SERVICE_HOST: alineLoadBalancer-7aa577f2fa563b65.elb.us-east-1.amazonaws.com
+      APP_SERVICE_HOST: ${RY_ALB}
     # network_mode: bridge
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
 
   user:
-    image: noodleween/aline-user-ry:corretto
-    build: aline-user-microservice-RY
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: "0.25"
-    #       memory: 1GB
+    image: $env.AWS_ECR_REGISTRY/$registryEndpoint
     # # for local use only
     # depends_on:
     #   - db
@@ -54,12 +40,6 @@ services:
 
   underwriter:
     image: noodleween/aline-underwriter-ry:corretto
-    build: aline-underwriter-mircoservice-RY
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: "0.25"
-    #       memory: 1GB
     # # for local use only
     # depends_on:
     #   - db
@@ -71,7 +51,6 @@ services:
 
   account:
     image: noodleween/aline-account-ry:corretto
-    build: aline-account-microservice-RY
     # # for local use only
     # depends_on:
     #   - db
@@ -83,7 +62,6 @@ services:
 
   transaction:
     image: noodleween/aline-transaction-ry:corretto
-    build: aline-transaction-microservice-RY
     # # for local use only
     # depends_on:
     #   - db
@@ -95,7 +73,6 @@ services:
 
   bank:
     image: noodleween/aline-bank-ry:corretto
-    build: aline-bank-microservice-RY
     # # for local use only
     # depends_on:
     #   - db
