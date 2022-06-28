@@ -28,7 +28,7 @@ services:
     #   - "host.docker.internal:host-gateway"
 
   user:
-    image: $env.AWS_ECR_REGISTRY/$registryEndpoint
+    image: $ECR_REPO $USER_R
     # # for local use only
     # depends_on:
     #   - db
