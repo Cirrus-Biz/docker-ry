@@ -28,7 +28,7 @@ services:
     #   - "host.docker.internal:host-gateway"
 
   user:
-    image: ${ECR_REPO}${USER_R}
+    image: ${ECR_REPO}${USER_R}:latest
     # # for local use only
     # depends_on:
     #   - db
