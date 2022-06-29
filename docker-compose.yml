@@ -22,7 +22,7 @@ services:
     environment:
       APP_PORT: ${GATEWAY_M}
       # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-      APP_SERVICE_HOST: ${RY_ALB}
+      APP_SERVICE_HOST: host.docker.internal:host-gateway
     # network_mode: bridge
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
