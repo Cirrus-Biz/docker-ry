@@ -28,7 +28,7 @@ services:
     #   - "host.docker.internal:host-gateway"
 
   user:
-    image: 744758641322.dkr.ecr.us-east-1.amazonaws.com/aline-user-ry:latest
+    image: 744758641322.dkr.ecr.us-east-1.amazonaws.com/aline-user-ry
     # # for local use only
     # depends_on:
     #   - db
