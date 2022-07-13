@@ -24,7 +24,7 @@ services:
     environment:
       APP_PORT: ${RY_GATEWAY_M}
       # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-      APP_SERVICE_HOST: arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/net/RY-test-network-lb/286e2db37953c6a2
+      APP_SERVICE_HOST: RY-test-network-lb-286e2db37953c6a2.elb.us-east-1.amazonaws.com
     # network_mode: bridge
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
