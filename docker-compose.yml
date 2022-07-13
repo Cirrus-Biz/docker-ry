@@ -14,7 +14,7 @@ x-common-variables: &common-variables
   ENCRYPT_SECRET_KEY: ${RY_ENCRYPT_SECRET_KEY}
   JWT_SECRET_KEY: ${RY_JWT_SECRET_KEY}
 
-x-aws-loadbalancer: "arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/app/RY-aline-test-lb/e35b4c489fe77eb2"
+x-aws-loadbalancer: "arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/net/RY-test-network-lb/286e2db37953c6a2"
 
 services:
   gateway:
@@ -24,7 +24,7 @@ services:
     environment:
       APP_PORT: ${RY_GATEWAY_M}
       # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-      APP_SERVICE_HOST: arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/app/RY-aline-test-lb/e35b4c489fe77eb2
+      APP_SERVICE_HOST: arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/net/RY-test-network-lb/286e2db37953c6a2
     # network_mode: bridge
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
