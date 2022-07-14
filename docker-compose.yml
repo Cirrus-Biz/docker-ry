@@ -15,7 +15,6 @@ x-common-variables: &common-variables
   JWT_SECRET_KEY: ${RY_JWT_SECRET_KEY}
 
 x-aws-loadbalancer: "arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/net/RY-test-network-lb/286e2db37953c6a2"
-x-aws-cluster: "RY-test-cluster-2"
 
 services:
   gateway:
