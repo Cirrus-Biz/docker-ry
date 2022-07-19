@@ -14,23 +14,23 @@ x-common-variables: &common-variables
   ENCRYPT_SECRET_KEY: ${RY_ENCRYPT_SECRET_KEY}
   JWT_SECRET_KEY: ${RY_JWT_SECRET_KEY}
 
-x-aws-loadbalancer: "arn:aws:elasticloadbalancing:us-east-1:744758641322:loadbalancer/net/RY-test-network-lb/286e2db37953c6a2"
+x-aws-loadbalancer: ${RY_LOADBALANCER}
 
 services:
-  # gateway:
-  #   image: noodleween/aline-gateway-ry:corretto
-  #   ports:
-  #     - ${RY_GATEWAY_M}
-  #   environment:
-  #     APP_PORT: ${RY_GATEWAY_M}
-  #     # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-  #     APP_SERVICE_HOST: RY-test-network-lb-286e2db37953c6a2.elb.us-east-1.amazonaws.com
-  #   # network_mode: bridge
-  #   # extra_hosts:
-  #   #   - "host.docker.internal:host-gateway"
+  gateway:
+    image: ${RY_ECR_URL}aline-gateway-ry
+    ports:
+      - ${RY_GATEWAY_M}
+    environment:
+      APP_PORT: ${RY_GATEWAY_M}
+      # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
+      APP_SERVICE_HOST: RY-test-network-lb-286e2db37953c6a2.elb.us-east-1.amazonaws.com
+    # network_mode: bridge
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
 
   user:
-    image: 744758641322.dkr.ecr.us-east-1.amazonaws.com/aline-user-ry
+    image: ${RY_ECR_URL}aline-user-ry
     # # for local use only
     # depends_on:
     #   - db
@@ -40,49 +40,49 @@ services:
       <<: *common-variables
       APP_PORT: ${RY_USER_M}
 
-  # underwriter:
-  #   image: noodleween/aline-underwriter-ry:corretto
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${RY_UNDERWRITER_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${RY_UNDERWRITER_M}
+  underwriter:
+    image: ${RY_ECR_URL}aline-underwriter-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${RY_UNDERWRITER_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${RY_UNDERWRITER_M}
 
-  # account:
-  #   image: noodleween/aline-account-ry:corretto
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${RY_ACCOUNT_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${RY_ACCOUNT_M}
+  account:
+    image: ${RY_ECR_URL}aline-account-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${RY_ACCOUNT_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${RY_ACCOUNT_M}
 
-  # transaction:
-  #   image: noodleween/aline-transaction-ry:corretto
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${RY_TRANSACTION_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${RY_TRANSACTION_M}
+  transaction:
+    image: ${RY_ECR_URL}aline-transaction-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${RY_TRANSACTION_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${RY_TRANSACTION_M}
 
-  # bank:
-  #   image: noodleween/aline-bank-ry:corretto
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${RY_BANK_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${RY_BANK_M}
+  bank:
+    image: ${RY_ECR_URL}aline-bank-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${RY_BANK_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${RY_BANK_M}
 
 # # This is a database for running compose locally
 #   db:
