@@ -12,7 +12,7 @@ x-common-variables: &common-variables
   DB_PORT: ${RY_DB_PORT}
   DB_NAME: ${RY_DB_NAME}
   ENCRYPT_SECRET_KEY: ${RY_ENCRYPT_SECRET_KEY}
-  JWT_SECRET_KEY: ${RY_JWT_SECRET_KEY}
+  JWT_SECRET_KEY: ${JWT_SECRET_KEY}
 
 x-aws-loadbalancer: ${RY_LOADBALANCER}
 
