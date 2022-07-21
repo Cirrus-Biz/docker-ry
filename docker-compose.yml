@@ -1,88 +1,88 @@
 version: '3.4'
 x-common-variables: &common-variables
   # For db connection in ECS
-  DB_USERNAME: ${RY_RDS_USERNAME}
-  DB_PASSWORD: ${RY_RDS_PASSWORD}
-  DB_HOST: ${RY_RDS_HOST}
+  DB_USERNAME: ${RDS_USERNAME}
+  DB_PASSWORD: ${RDS_PASSWORD}
+  DB_HOST: ${RDS_HOST}
   # # For db connection locally
   # DB_USERNAME: ${DB_USERNAME}
   # DB_PASSWORD: ${DB_PASSWORD}
   # DB_HOST: ${DB_HOST}
   # Vars that don't need to be the changed
-  DB_PORT: ${RY_DB_PORT}
-  DB_NAME: ${RY_DB_NAME}
-  ENCRYPT_SECRET_KEY: ${RY_ENCRYPT_SECRET_KEY}
+  DB_PORT: ${DB_PORT}
+  DB_NAME: ${DB_NAME}
+  ENCRYPT_SECRET_KEY: ${ENCRYPT_SECRET_KEY}
   JWT_SECRET_KEY: ${JWT_SECRET_KEY}
 
-x-aws-loadbalancer: ${RY_LOADBALANCER}
+x-aws-loadbalancer: ${LOADBALANCER}
 
 services:
   gateway:
-    image: ${RY_ECR_URL}aline-gateway-ry
+    image: ${ECR_URL}aline-gateway-ry
     ports:
-      - ${RY_GATEWAY_M}
+      - ${GATEWAY_M}
     environment:
-      APP_PORT: ${RY_GATEWAY_M}
+      APP_PORT: ${GATEWAY_M}
       # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-      APP_SERVICE_HOST: ${RY_LOADBALANCER}
+      APP_SERVICE_HOST: ${LOADBALANCER}
     # network_mode: bridge
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
 
   user:
-    image: ${RY_ECR_URL}aline-user-ry
+    image: ${ECR_URL}aline-user-ry
     # # for local use only
     # depends_on:
     #   - db
     ports:
-      - ${RY_USER_M}:${RY_USER_M}
+      - ${USER_M}:${RY_USER_M}
     environment:
       <<: *common-variables
       APP_PORT: ${RY_USER_M}
 
   underwriter:
-    image: ${RY_ECR_URL}aline-underwriter-ry
+    image: ${ECR_URL}aline-underwriter-ry
     # # for local use only
     # depends_on:
     #   - db
     ports:
-      - ${RY_UNDERWRITER_M}
+      - ${UNDERWRITER_M}
     environment:
       <<: *common-variables
-      APP_PORT: ${RY_UNDERWRITER_M}
+      APP_PORT: ${UNDERWRITER_M}
 
   account:
-    image: ${RY_ECR_URL}aline-account-ry
+    image: ${ECR_URL}aline-account-ry
     # # for local use only
     # depends_on:
     #   - db
     ports:
-      - ${RY_ACCOUNT_M}
+      - ${ACCOUNT_M}
     environment:
       <<: *common-variables
-      APP_PORT: ${RY_ACCOUNT_M}
+      APP_PORT: ${ACCOUNT_M}
 
   transaction:
-    image: ${RY_ECR_URL}aline-transaction-ry
+    image: ${ECR_URL}aline-transaction-ry
     # # for local use only
     # depends_on:
     #   - db
     ports:
-      - ${RY_TRANSACTION_M}
+      - ${TRANSACTION_M}
     environment:
       <<: *common-variables
-      APP_PORT: ${RY_TRANSACTION_M}
+      APP_PORT: ${TRANSACTION_M}
 
   bank:
-    image: ${RY_ECR_URL}aline-bank-ry
+    image: ${ECR_URL}aline-bank-ry
     # # for local use only
     # depends_on:
     #   - db
     ports:
-      - ${RY_BANK_M}
+      - ${BANK_M}
     environment:
       <<: *common-variables
-      APP_PORT: ${RY_BANK_M}
+      APP_PORT: ${BANK_M}
 
 # # This is a database for running compose locally
 #   db:
