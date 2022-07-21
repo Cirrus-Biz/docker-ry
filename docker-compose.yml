@@ -18,7 +18,7 @@ x-aws-loadbalancer: ${RY_LOADBALANCER}
 
 services:
   gateway:
-    image: noodleween/aline-gateway-ry:corretto
+    image: ${RY_ECR_URL}aline-gateway-ry
     ports:
       - ${RY_GATEWAY_M}
     environment:
@@ -30,7 +30,7 @@ services:
     #   - "host.docker.internal:host-gateway"
 
   user:
-    image: noodleween/aline-user-ry:corretto
+    image: ${RY_ECR_URL}aline-user-ry
     # # for local use only
     # depends_on:
     #   - db
@@ -41,7 +41,7 @@ services:
       APP_PORT: ${RY_USER_M}
 
   underwriter:
-    image: noodleween/aline-underwriter-ry:corretto
+    image: ${RY_ECR_URL}aline-underwriter-ry
     # # for local use only
     # depends_on:
     #   - db
@@ -52,7 +52,7 @@ services:
       APP_PORT: ${RY_UNDERWRITER_M}
 
   account:
-    image: noodleween/aline-account-ry:corretto
+    image: ${RY_ECR_URL}aline-account-ry
     # # for local use only
     # depends_on:
     #   - db
@@ -63,7 +63,7 @@ services:
       APP_PORT: ${RY_ACCOUNT_M}
 
   transaction:
-    image: noodleween/aline-transaction-ry:corretto
+    image: ${RY_ECR_URL}aline-transaction-ry
     # # for local use only
     # depends_on:
     #   - db
@@ -74,7 +74,7 @@ services:
       APP_PORT: ${RY_TRANSACTION_M}
 
   bank:
-    image: noodleween/aline-bank-ry:corretto
+    image: ${RY_ECR_URL}aline-bank-ry
     # # for local use only
     # depends_on:
     #   - db
