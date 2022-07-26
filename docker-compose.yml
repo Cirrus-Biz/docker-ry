@@ -24,7 +24,7 @@ services:
     environment:
       APP_PORT: ${GATEWAY_M}
       # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-      APP_SERVICE_HOST: ${LOADBALANCER}
+      APP_SERVICE_HOST: ${LOADBALANCER_DNS}
     # network_mode: bridge
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
