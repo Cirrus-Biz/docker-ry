@@ -27,7 +27,9 @@ pipeline {
         }
         stage('Ecs Status Check') {
             steps {
-                sh '. ./status-check.sh'
+                timeout(time: 1, unit: 'MINUTES') {
+                    sh '. ./status-check.sh'
+                }
             }
         }
         stage('Docker Compose Up') {
