@@ -25,11 +25,16 @@ pipeline {
                 sh 'docker context use ${AWS_PROFILE}'
             }
         }
+        stage('Ecs Status Check') {
+            steps {
+                sh 'aws cloudformation describe-stacks --stack-name=${STACK}'
+                // sh 'if [[ CONDITION_STATEMENT ]]; then SOME_CODE; else OTHER_CODE; fi'
+            }
+        }
         stage('Docker Compose Up') {
             steps {
                 sh '''aws secretsmanager get-secret-value --secret-id RY-aline-environment-variables | jq -r '.["SecretString"]' | jq '.' | jq -r 'keys[] as \$k | "export \\(\$k)=\\(.[\$k])"' > .env'''
                 sh '. ./.env'
-                sh '. ./status-check.sh'
                 sh 'docker compose -p ${ecs_stack_name} up -d'
             }
         }
