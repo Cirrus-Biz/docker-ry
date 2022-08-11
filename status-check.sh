@@ -1,3 +1,5 @@
+#!/bin/sh
+
 aws cloudformation describe-stacks --stack-name=${STACK} > stack.txt 2>&1
 
 if [ $? -ne 0 ]; then
