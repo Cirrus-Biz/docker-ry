@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh '''aws secretsmanager get-secret-value --secret-id RY-aline-environment-variables | jq -r '.["SecretString"]' | jq '.' | jq -r 'keys[] as \$k | "export \\(\$k)=\\(.[\$k])"' > .env'''
                 sh '. ./.env'
-                sh 'sudo . ./status-check.sh'
+                sh '. ./status-check.sh'
                 sh 'docker compose -p ${ecs_stack_name} up -d'
             }
         }
