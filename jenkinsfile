@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Ecs Status Check') {
             steps {
-                sh 'aws cloudformation describe-stacks --stack-name=${STACK} > stack.txt 2>&1'
+                sh 'aws cloudformation describe-stacks --stack-name=${STACK} > stack.txt 2> error.txt'
                 // sh 'if [[ CONDITION_STATEMENT ]]; then SOME_CODE; else OTHER_CODE; fi'
             }
         }
