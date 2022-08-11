@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Ecs Status Check') {
             steps {
-                sh './status-check.sh'
+                sh '. ./status-check.sh'
             }
         }
         stage('Docker Compose Up') {
