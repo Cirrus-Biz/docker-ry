@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Ecs Status Check') {
             steps {
-                sh 'aws cloudformation describe-stacks --stack-name=${STACK}'
+                sh 'echo aws cloudformation describe-stacks --stack-name=${STACK} = True'
                 // sh 'if [[ CONDITION_STATEMENT ]]; then SOME_CODE; else OTHER_CODE; fi'
             }
         }
