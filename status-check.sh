@@ -25,3 +25,5 @@ else
         echo "No stack activity in progress!  You are clear to compose up"
     fi
 fi
+
+# debug comment
