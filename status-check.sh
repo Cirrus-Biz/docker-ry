@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # script using aws cli for to check for stack status and wait until process ends to continue
-aws cloudformation describe-stacks --stack-name=${STACK} 2>&1
+aws cloudformation describe-stacks --stack-name=${STACK} | $?
 
 if [ $? -ne 0 ]; then
     echo "Stack ${STACK} does not yet exist"
