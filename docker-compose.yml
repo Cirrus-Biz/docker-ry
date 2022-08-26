@@ -35,10 +35,10 @@ services:
     # depends_on:
     #   - db
     ports:
-      - ${USER_M}:${RY_USER_M}
+      - ${USER_M}:${USER_M}
     environment:
       <<: *common-variables
-      APP_PORT: ${RY_USER_M}
+      APP_PORT: ${USER_M}
 
   underwriter:
     image: ${ECR_URL}aline-underwriter-ry
