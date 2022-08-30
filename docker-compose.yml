@@ -40,38 +40,38 @@ services:
       <<: *common-variables
       APP_PORT: ${USER_M}
 
-  underwriter:
-    image: ${ECR_URL}aline-underwriter-ry
-    # # for local use only
-    # depends_on:
-    #   - db
-    ports:
-      - ${UNDERWRITER_M}
-    environment:
-      <<: *common-variables
-      APP_PORT: ${UNDERWRITER_M}
+  # underwriter:
+  #   image: ${ECR_URL}aline-underwriter-ry
+  #   # # for local use only
+  #   # depends_on:
+  #   #   - db
+  #   ports:
+  #     - ${UNDERWRITER_M}
+  #   environment:
+  #     <<: *common-variables
+  #     APP_PORT: ${UNDERWRITER_M}
 
-  account:
-    image: ${ECR_URL}aline-account-ry
-    # # for local use only
-    # depends_on:
-    #   - db
-    ports:
-      - ${ACCOUNT_M}
-    environment:
-      <<: *common-variables
-      APP_PORT: ${ACCOUNT_M}
+  # account:
+  #   image: ${ECR_URL}aline-account-ry
+  #   # # for local use only
+  #   # depends_on:
+  #   #   - db
+  #   ports:
+  #     - ${ACCOUNT_M}
+  #   environment:
+  #     <<: *common-variables
+  #     APP_PORT: ${ACCOUNT_M}
 
-  transaction:
-    image: ${ECR_URL}aline-transaction-ry
-    # # for local use only
-    # depends_on:
-    #   - db
-    ports:
-      - ${TRANSACTION_M}
-    environment:
-      <<: *common-variables
-      APP_PORT: ${TRANSACTION_M}
+  # transaction:
+  #   image: ${ECR_URL}aline-transaction-ry
+  #   # # for local use only
+  #   # depends_on:
+  #   #   - db
+  #   ports:
+  #     - ${TRANSACTION_M}
+  #   environment:
+  #     <<: *common-variables
+  #     APP_PORT: ${TRANSACTION_M}
 
   bank:
     image: ${ECR_URL}aline-bank-ry
