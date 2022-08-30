@@ -17,17 +17,17 @@ x-common-variables: &common-variables
 x-aws-loadbalancer: ${LOADBALANCER}
 
 services:
-  # gateway:
-  #   image: ${ECR_URL}aline-gateway-ry
-  #   ports:
-  #     - ${GATEWAY_M}
-  #   environment:
-  #     APP_PORT: ${GATEWAY_M}
-  #     # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
-  #     APP_SERVICE_HOST: ${LOADBALANCER_DNS}
-  #   # network_mode: bridge
-  #   # extra_hosts:
-  #   #   - "host.docker.internal:host-gateway"
+  gateway:
+    image: ${ECR_URL}aline-gateway-ry
+    ports:
+      - ${GATEWAY_M}
+    environment:
+      APP_PORT: ${GATEWAY_M}
+      # APP_SERVICE_HOST: ${APP_SERVICE_HOST}
+      APP_SERVICE_HOST: ${LOADBALANCER_DNS}
+    # network_mode: bridge
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
 
   user:
     image: ${ECR_URL}aline-user-ry
@@ -40,49 +40,49 @@ services:
       <<: *common-variables
       APP_PORT: ${USER_M}
 
-  # underwriter:
-  #   image: ${ECR_URL}aline-underwriter-ry
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${UNDERWRITER_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${UNDERWRITER_M}
+  underwriter:
+    image: ${ECR_URL}aline-underwriter-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${UNDERWRITER_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${UNDERWRITER_M}
 
-  # account:
-  #   image: ${ECR_URL}aline-account-ry
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${ACCOUNT_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${ACCOUNT_M}
+  account:
+    image: ${ECR_URL}aline-account-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${ACCOUNT_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${ACCOUNT_M}
 
-  # transaction:
-  #   image: ${ECR_URL}aline-transaction-ry
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${TRANSACTION_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${TRANSACTION_M}
+  transaction:
+    image: ${ECR_URL}aline-transaction-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${TRANSACTION_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${TRANSACTION_M}
 
-  # bank:
-  #   image: ${ECR_URL}aline-bank-ry
-  #   # # for local use only
-  #   # depends_on:
-  #   #   - db
-  #   ports:
-  #     - ${BANK_M}
-  #   environment:
-  #     <<: *common-variables
-  #     APP_PORT: ${BANK_M}
+  bank:
+    image: ${ECR_URL}aline-bank-ry
+    # # for local use only
+    # depends_on:
+    #   - db
+    ports:
+      - ${BANK_M}
+    environment:
+      <<: *common-variables
+      APP_PORT: ${BANK_M}
 
 # # This is a database for running compose locally
 #   db:
